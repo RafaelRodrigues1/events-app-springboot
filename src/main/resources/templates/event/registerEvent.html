@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar evento</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <h1>Cadastro de eventos</h1>
+    </header>
+
+    <nav class="navegacao">
+		<a class="botao" href="/event"><h3>Lista de eventos</h3></a>
+	</nav>
+
+    <main class="container">
+        <form class="formulario" action="/event/register" method="POST">
+            <label for="">
+                Evento: <input type="text" name="name">
+            </label>
+            <label for="">
+                Local: <input type="text" name="local">
+            </label>
+            <label for="">
+                Data e hora: <input type="datetime-local" name="dateTime" id="">
+            </label>
+            <label class="botaoUnico" for="">
+                <button class="botao center" type="submit"><h3>Salvar</h3></button>
+            </label>
+        </form>
+    </main>
+</body>
+</html>

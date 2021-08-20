@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do evento</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <h1>Evento</h1>
+    </header>
+
+    <nav class="navegacao">
+		<a class="botao voltar" href="/event"><h3>Voltar</h3></a>
+	</nav>
+
+    <main class="container">
+        <form class="formulario" th:each="event : ${event}" th:action="@{/event/update/{id}(id=${event.id})}"} method="POST">
+            <label for="">
+                Evento: <input th:value="${event.name}" type="text" name="name">
+            </label>
+            <label for="">
+                Local: <input th:value="${event.local}" type="text" name="local">
+            </label>
+            <label for="">
+                Data e hora: <input th:value="${event.dateTimeFormat}" type="datetime-local" name="dateTime">
+            </label>
+            <label class="botoes" for="">
+                <button class="botao center" type="submit"><h3>Alterar</h3></button>
+
+                <a class="botao" th:href="@{/event/delete/{id}(id=${event.id})}"><h3>Apagar</h3></a>
+            </label>
+
+        </form>
+    </main>
+</body>
+</html>
