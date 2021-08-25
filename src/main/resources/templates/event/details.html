@@ -69,24 +69,29 @@
         </form>
 
         <article class="container guests events">
-            <table>
-                <thead>
-                    <th>Nome</th>
-                    <th>Rg</th>
-                    <th>Contato</th>
-                    <th></th>
-                </thead>
-                <tbody th:each="guest : ${event.guests}">
-                    <tr>
-                        <td th:text="${guest.name}">Rafael Guest</td>
-                        <td th:text="${guest.rg}">01254 guest</td>
-                        <td th:text="${guest.phone}">988665544 guest</td>
-                        <td>
-                            <a th:href="@{{eventId}/guest/delete/{id}(id=${guest.id}, eventId=${event.id})}">Apagar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div th:if="${event.guests.isEmpty()}">
+                <h2>Ainda não existem convidados cadastrados</h1>
+            </div>
+            <div th:if="${!event.guests.isEmpty()}">
+                <table>
+                    <thead>
+                        <th>Nome</th>
+                        <th>Rg</th>
+                        <th>Contato</th>
+                        <th></th>
+                    </thead>
+                    <tbody th:each="guest : ${event.guests}">
+                        <tr>
+                            <td th:text="${guest.name}">Rafael Guest</td>
+                            <td th:text="${guest.rg}">01254 guest</td>
+                            <td th:text="${guest.phone}">988665544 guest</td>
+                            <td>
+                                <a th:href="@{{eventId}/guest/delete/{id}(id=${guest.id}, eventId=${event.id})}">Apagar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </article>
     </main>
 
