@@ -13,24 +13,25 @@
 <body>
     <header class="cabecalho">
         <h1>Cadastro de eventos</h1>
+        <a class="botao" href="/event"><h3>Lista de eventos</h3></a>
     </header>
 
     <nav class="navegacao">
-		<a class="botao" href="/event"><h3>Lista de eventos</h3></a>
+		
 	</nav>
 
     <main class="container">
         <form class="formulario" action="/event/register" method="POST">
             <label for="">
-                Evento: <input type="text" name="name">
+                Evento <input type="text" name="name">
             </label>
             <label for="">
-                Local: <input type="text" name="local">
+                Local <input type="text" name="local">
             </label>
             <label for="">
-                Data e hora: <input type="datetime-local" name="dateTime" id="">
+                Data e hora <input type="datetime-local" name="dateTime" id="">
             </label>
-            <label class="botaoUnico" for="">
+            <label class="botaoUnico labelbutton" for="">
                 <button class="botao center" type="submit"><h3>Salvar</h3></button>
             </label>
         </form>

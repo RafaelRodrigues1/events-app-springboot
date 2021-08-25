@@ -12,31 +12,83 @@
 </head>
 <body>
     <header class="cabecalho">
-        <h1>Evento</h1>
+        <h1>Detalhes do evento</h1>
+        <a class="botao voltar" href="/event"><h3>Voltar</h3></a>
     </header>
 
-    <nav class="navegacao">
-		<a class="botao voltar" href="/event"><h3>Voltar</h3></a>
-	</nav>
-
     <main class="container">
-        <form class="formulario" th:each="event : ${event}" th:action="@{/event/update/{id}(id=${event.id})}"} method="POST">
+        <form class="formulario detalhes" th:each="event : ${event}" th:action="@{/event/update/{id}(id=${event.id})}"} method="POST">
             <label for="">
-                Evento: <input th:value="${event.name}" type="text" name="name">
+                Evento <input th:value="${event.name}" type="text" name="name">
             </label>
             <label for="">
-                Local: <input th:value="${event.local}" type="text" name="local">
+                Local <input th:value="${event.local}" type="text" name="local">
             </label>
             <label for="">
-                Data e hora: <input th:value="${event.dateTimeFormat}" type="datetime-local" name="dateTime">
+                Data e hora <input th:value="${event.dateTimeFormat}" type="datetime-local" name="dateTime">
             </label>
-            <label class="botoes" for="">
+            <label class="botoes labelbutton" for="">
                 <button class="botao center" type="submit"><h3>Alterar</h3></button>
 
                 <a class="botao" th:href="@{/event/delete/{id}(id=${event.id})}"><h3>Apagar</h3></a>
             </label>
-
         </form>
+
+        <h2>Convidados</h2>
+        <form class="formulario" th:action="@{/event/details/{id}(id=${event.id})}" method="POST">
+            <section class="container guests">
+                <table>
+                    <thead>
+                        <th>Nome</th>
+                        <th>Rg</th>
+                        <th>Contato</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="name"></td>
+                            <td><input type="text" name="rg"></td>
+                            <td><input type="text" name="phone"></td>
+                            <td><button class="botao" type="submit">Cadastrar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!--<label for="">
+                Nome: <input type="text" name="name">
+            </label>
+            <label for="">
+                RG: <input type="text" name="rg">
+            </label>
+            <label for="">
+                Contato: <input type="text" name="phone">
+            </label>
+            <label class="botaoUnico labelbutton" for="">
+                <button class="botao center" type="submit">Cadastrar Convidado</button>
+            </label>-->
+        </form>
+
+        <article class="container guests events">
+            <table>
+                <thead>
+                    <th>Nome</th>
+                    <th>Rg</th>
+                    <th>Contato</th>
+                    <th></th>
+                </thead>
+                <tbody th:each="guest : ${event.guests}">
+                    <tr>
+                        <td th:text="${guest.name}">Rafael Guest</td>
+                        <td th:text="${guest.rg}">01254 guest</td>
+                        <td th:text="${guest.phone}">988665544 guest</td>
+                        <td>
+                            <a th:href="@{{eventId}/guest/delete/{id}(id=${guest.id}, eventId=${event.id})}">Apagar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
     </main>
+
 </body>
 </html>

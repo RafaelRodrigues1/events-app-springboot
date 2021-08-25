@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.eventsspring.eventsapp.models.entities.Event;
+import br.com.eventsspring.eventsapp.models.entities.Guest;
 import br.com.eventsspring.eventsapp.models.services.EventService;
+import br.com.eventsspring.eventsapp.models.services.GuestService;
 import javassist.NotFoundException;
 
 @Controller
@@ -24,6 +26,9 @@ public class EventController {
 
 	@Autowired
 	private EventService eventService;
+	
+	@Autowired
+	private GuestService guestService;
 	
 	@GetMapping("/register")
 	public String registerEvent() {
@@ -65,6 +70,20 @@ public class EventController {
 			throws NotFoundException, IOException {
 		eventService.deleteEvent(id);
 		response.sendRedirect("/event");
+	}
+	
+	@PostMapping("/details/{eventId}")
+	public void saveGuest(@PathVariable Long eventId, Guest guest, HttpServletResponse response)
+			throws IOException, NotFoundException {
+		guestService.saveGuest(eventId, guest);
+		response.sendRedirect(eventId.toString());
+	}
+	
+	@GetMapping("/details/{eventId}/guest/delete/{id}")
+	public void deleteGuest(@PathVariable Long eventId, @PathVariable Long id, 
+			HttpServletResponse response) throws NotFoundException, IOException {
+		guestService.deleteGuest(id);
+		response.sendRedirect("/event/details/" + eventId);
 	}
 }
 

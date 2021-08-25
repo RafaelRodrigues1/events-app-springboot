@@ -13,15 +13,13 @@
 <body>
 	<header class="cabecalho">
 		<h1>Eventos</h1>
+		<a class="botao" href="/event/register"><h3>Cadastrar evento</h3></a>
 	</header>
 
-	<nav class="navegacao">
-		<a class="botao" href="/event/register"><h3>Cadastrar evento</h3></a>
-	</nav>
-
-	<main class="container">
+	<main class="container events">
 		<table>
 			<thead>
+				<th></th>
 				<th>Evento</th>
 				<th>Local</th>
 				<th>Data</th>
@@ -29,7 +27,8 @@
 			</thead>
 			<tbody th:each="event : ${events}">
 				<tr>
-					<td><a th:href="@{/event/details/{id}(id=${event.id})}"><span th:text="${event.name}">Palestra de Java 8</span></a></td>
+					<td><a th:href="@{/event/details/{id}(id=${event.id})}">Detalhes</a></td>
+					<td th:text="${event.name}">Palestra de Java 8</td>
 					<td th:text="${event.local}">Auditório 3</td>
 					<td th:text="${event.date}">27/10/2021</td>
 					<td th:text="${event.time}">14:00</td>
